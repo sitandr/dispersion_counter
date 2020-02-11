@@ -8,12 +8,12 @@ ln(x); log(x, a); sin(x); cos(x); tg(x); ctg(x); arctg(x).
 
 For example, with "test.py" started you can write
 
-import random
-x = (5?1)
-for i in range(10):
-	v1 = random.random()
-	v2 = random.random()
-	x+=(v1?v2)
-
-print(ln(x))
-\# answer will be like (2.311793133261718±0.20251518569197163)
+import random \n
+x = (5?1) \n
+for i in range(10): \n
+	v1 = random.random() \n
+	v2 = random.random() \n
+	x+=(v1?v2) \n
+\n
+print(ln(x)) \n
+#/ answer will be like (2.311793133261718±0.20251518569197163)
