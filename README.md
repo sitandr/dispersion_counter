@@ -16,4 +16,4 @@ for i in range(10):
 	x+=(v1?v2)
 
 print(ln(x))
-# answer will be like (2.311793133261718±0.20251518569197163)
+\# answer will be like (2.311793133261718±0.20251518569197163)
