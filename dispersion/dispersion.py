@@ -38,8 +38,14 @@ def arctg(a):
             return math.atan(a)
 def console_text(text):
       strings = text.split('\n')
+      
       for i in strings:
-            console(i)
+            t+=i
+            if is_not_full(i):
+                  t+='\n'
+                  continue
+            console(t)
+            t = ''
 def console(string):
       'Just input usual python commands. If you want to add a'
       'value with dispersion, input (x?y) or (x±y)'
@@ -59,10 +65,20 @@ def console(string):
       exec(string, globals())
 def console_mode():
       "Inputed text will be read using 'console' command"
+      t = ''
       while True:
             string = input()
+            t+=string
             if string.strip() == 'exit()':
                   break
-            console(string)
+            if is_not_full(string):
+                  t+='\n'
+                  continue
+            console(t)
+            t = ''
+def is_not_full(string):
+      return len(string)>0 and(string.strip()[-1] == ':' or
+                string[0] == '\t' or
+                (len(string)>=4 and string[:4] == '    '))
 if __name__ == '__main__':
       console_mode()
