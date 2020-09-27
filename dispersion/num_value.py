@@ -6,6 +6,9 @@ from typing import Union
 def mean_square(value1, value2):
     return math.sqrt((float(value1) ** 2 + float(value2) ** 2) / 2)
 
+def linear_operation_quadratic_dispersion(dispersion1, dispersion2):
+    return mean_square(dispersion1, dispersion2) * math.sqrt(2)
+
 def arithmetic_mean(value1, value2):
     return (value1 + value2) / 2
 
@@ -30,7 +33,7 @@ class Num_value:
 
     def __add__(self, other):
         return Num_value(
-            self.value + get_value(other), self.dispersion + get_dispersion(other)
+            self.value + get_value(other), linear_operation_quadratic_dispersion(self.dispersion, get_dispersion(other))  # self.dispersion + get_dispersion(other)
         )
 
         # Num_value(self.value + get_value(other), (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
@@ -41,7 +44,7 @@ class Num_value:
 
     def __sub__(self, other):
         return Num_value(
-            self.value - get_value(other), self.dispersion + get_dispersion(other)
+            self.value - get_value(other), linear_operation_quadratic_dispersion(self.dispersion, get_dispersion(other))  # , self.dispersion + get_dispersion(other)
         )
 
         # Num_value(self.value - get_value(other), (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
