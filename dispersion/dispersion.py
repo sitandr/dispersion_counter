@@ -1,50 +1,50 @@
-from dispersion.num_value import *
+from dispersion.dispersed_value import *
 
 
 def sin(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__sin__()
 	else:
 		return math.sin(a)
 
 
 def cos(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__cos__()
 	else:
 		return math.cos(a)
 
 
 def tg(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__tg__()
 	else:
 		return math.tan(a)
 
 
 def ctg(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__ctg__()
 	else:
 		return 1 / math.tan(a)
 
 
 def log(a, b):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__log__(b)
 	else:
 		return math.log(a, b)
 
 
 def ln(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__ln__()
 	else:
 		return math.log(a)
 
 
 def arctg(a):
-	if type(a) == Num_value:
+	if type(a) == dispersed_value:
 		return a.__arctg__()
 	else:
 		return math.atan(a)
