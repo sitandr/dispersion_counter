@@ -1,4 +1,4 @@
-from dispersion.dispersion import *
+import dispersion.dispersion as d
 
 
-console_mode()
+d.console_mode()
