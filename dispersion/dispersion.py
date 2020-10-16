@@ -3,7 +3,7 @@ import re
 NO_SYMPY = False
 try:
         import sympy
-except:
+except ImportError:
         print("You have no \"sympy\" library. You can still use the library, but the calculations will be much less accurate.")
         print("If you install it, you will be able yo use command 'eval_with_diff(<some expression, there may be variables (both floats and dispersed values), constants and some functions (but only basic yet, probablly, such opportunity will be added soon)>)'")
         NO_SYMPY = True
@@ -122,7 +122,7 @@ if not NO_SYMPY:
                 var = {}
                 i = 0
                 while True:
-                        s = re.search('\w[\w\d]*', eq[i:])
+                        s = re.search('[a-zA-Z][\w]*', eq[i:])
                         if s == None:
                                 break
                         s = s.group(0)
@@ -130,7 +130,9 @@ if not NO_SYMPY:
                         ind2 = ind + len(s)
                         i = ind2
                         try:
+                                print(s)
                                 res = eval(s)
+                                
                         except NameError:
                                 continue
                         if type(res) == dispersed_value:

@@ -36,22 +36,21 @@ class dispersed_value:
             self.value + get_value(other), linear_operation_quadratic_dispersion(self.dispersion, get_dispersion(other))  # self.dispersion + get_dispersion(other)
         )
 
-        # Num_value(self.value + get_value(other), (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
-
     def __radd__(self, other):
+        # a * b = b * a
         return self.__add__(other)
-        # return Num_value(self.value + get_value(other), (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
+
 
     def __sub__(self, other):
         return dispersed_value(
             self.value - get_value(other), linear_operation_quadratic_dispersion(self.dispersion, get_dispersion(other))  # , self.dispersion + get_dispersion(other)
         )
 
-        # Num_value(self.value - get_value(other), (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
-
     def __rsub__(self, other):
-        self.__sub__(other)
-        # return Num_value(get_value(other) - self.value, (self.dispersion ** 2 + get_dispersion(other) ** 2) ** 0.5)
+        return dispersed_value(
+            get_value(other) - self.value, linear_operation_quadratic_dispersion(self.dispersion, get_dispersion(other))  # , self.dispersion + get_dispersion(other)
+        )
+
 
     def __mul__(self, other):
         res_value = self.value * get_value(other)
@@ -60,10 +59,9 @@ class dispersed_value:
         return dispersed_value(res_value, res_value * rel_dispersion)
 
     def __rmul__(self, other):
+        # a * b = b * a
         return self.__mul__(other)
-        # v = self.value * Num_value.get_value(other)
-        # return Num_value(v,
-        #                  v * (self.relative_dispersion() + Num_value.get_relative_dispersion))
+    
 
     def __truediv__(self, other):
         res_value = self.value / get_value(other)
@@ -72,15 +70,14 @@ class dispersed_value:
         return dispersed_value(res_value, res_value * rel_dispersion)
 
     def __rtruediv__(self, other):
-        return self.__truediv__(other)
-        # v = Num_value.get_value(other) / self.value
-        # return Num_value(v,
-        #                  v * (self.relative_dispersion() + Num_value.get_relative_dispersion))
+        res_value = get_value(other) / self.value 
+        rel_dispersion = self.relative_dispersion() + get_relative_dispersion(other)
+
+        return dispersed_value(res_value, res_value * rel_dispersion)
+
 
     def __pow__(self, other):
         res_value = self.value ** get_value(other)
-        #            return Num_value(res_value,
-        #                             res_value*Num_value.get_v(other)*self.w())
         return dispersed_value(res_value,
                                get_value(other) * (self.value ** (get_value(other) - 1)) * self.dispersion)
 
